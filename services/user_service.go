@@ -1,35 +1,32 @@
 package services
 
-import (
-	"fmt"
-	"streaming/models"
-)
+import "streaming/models"
 
-// UserService (capa de negocio)
 type UserService struct {
-	db UserRepository // 👈 interfaz
+	repo UserRepository
 }
 
-func NewUserService(db UserRepository) *UserService {
-	return &UserService{db: db}
+func NewUserService(repo UserRepository) *UserService {
+	return &UserService{repo: repo}
 }
 
+// Crea usuario
 func (s *UserService) AddUser(id int, name string, email string) {
-	user := models.NewUser(id, name, email)
-	s.db.AddUser(user)
-	fmt.Println("✅ Usuario registrado correctamente.")
+	user := models.User{ID: id, Name: name, Email: email}
+	s.repo.AddUser(user)
 }
 
-func (s *UserService) ShowUsers() {
-	users := s.db.GetUsers()
+// Lista usuarios
+func (s *UserService) GetUsers() []models.User {
+	return s.repo.GetUsers()
+}
 
-	if len(users) == 0 {
-		fmt.Println("⚠️ No hay usuarios registrados.")
-		return
-	}
+// Buscar usuario por ID
+func (s *UserService) GetUserByID(id int) (models.User, bool) {
+	return s.repo.GetUserByID(id)
+}
 
-	fmt.Println("\n👥 USUARIOS REGISTRADOS")
-	for _, u := range users {
-		fmt.Printf("ID: %d | Nombre: %s | Email: %s\n", u.GetID(), u.GetName(), u.GetEmail())
-	}
+// Eliminar usuario por ID
+func (s *UserService) DeleteUser(id int) bool {
+	return s.repo.DeleteUser(id)
 }

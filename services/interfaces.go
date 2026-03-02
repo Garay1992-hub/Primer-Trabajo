@@ -2,14 +2,16 @@ package services
 
 import "streaming/models"
 
-// UserRepository define lo que el sistema necesita para manejar usuarios
 type UserRepository interface {
 	AddUser(user models.User)
 	GetUsers() []models.User
+	GetUserByID(id int) (models.User, bool)
+	DeleteUser(id int) bool
 }
 
-// ContentRepository define lo necesario para manejar el catálogo
 type ContentRepository interface {
 	AddContent(content models.Content)
 	GetContents() []models.Content
+	GetContentByID(id int) (models.Content, bool)
+	DeleteContent(id int) bool
 }

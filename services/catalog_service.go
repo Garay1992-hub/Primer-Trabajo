@@ -1,35 +1,28 @@
 package services
 
-import (
-	"fmt"
-	"streaming/models"
-)
+import "streaming/models"
 
-// CatalogService (capa de negocio)
 type CatalogService struct {
-	db ContentRepository // 👈 interfaz
+	repo ContentRepository
 }
 
-func NewCatalogService(db ContentRepository) *CatalogService {
-	return &CatalogService{db: db}
+func NewCatalogService(repo ContentRepository) *CatalogService {
+	return &CatalogService{repo: repo}
 }
 
-func (s *CatalogService) AddContent(id int, title string, genre string) {
-	content := models.NewContent(id, title, genre)
-	s.db.AddContent(content)
-	fmt.Println("✅ Contenido agregado correctamente.")
+func (c *CatalogService) AddContent(id int, title string, genre string) {
+	content := models.Content{ID: id, Title: title, Genre: genre}
+	c.repo.AddContent(content)
 }
 
-func (s *CatalogService) ShowCatalog() {
-	catalog := s.db.GetContents()
+func (c *CatalogService) GetContents() []models.Content {
+	return c.repo.GetContents()
+}
 
-	if len(catalog) == 0 {
-		fmt.Println("⚠️ El catálogo está vacío.")
-		return
-	}
+func (c *CatalogService) GetContentByID(id int) (models.Content, bool) {
+	return c.repo.GetContentByID(id)
+}
 
-	fmt.Println("\n🎞️ CATÁLOGO DISPONIBLE")
-	for _, c := range catalog {
-		fmt.Printf("ID: %d | Título: %s | Género: %s\n", c.GetID(), c.GetTitle(), c.GetGenre())
-	}
+func (c *CatalogService) DeleteContent(id int) bool {
+	return c.repo.DeleteContent(id)
 }
