@@ -28,4 +28,9 @@ func main() {
 	if err != nil {
 		fmt.Println("❌ Error al iniciar servidor:", err)
 	}
+=======
+go
+package main
+func main () {
+     // Punto de entrada del sistema
 }

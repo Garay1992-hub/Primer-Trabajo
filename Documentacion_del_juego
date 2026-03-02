@@ -1,0 +1,54 @@
+## Documentación Detallada del Juego del Ahorcado
+
+### Funcionalidades Principales
+
+1. **Sistema de Palabras**
+   - Banco de palabras predefinido
+   - Selección aleatoria de palabras
+   - Palabras relacionadas con tecnología y programación
+
+2. **Control de Juego**
+   - Máximo 6 intentos permitidos
+   - Seguimiento de letras adivinadas
+   - Validación de letras repetidas
+   - Verificación de victoria/derrota
+
+3. **Interfaz de Usuario**
+   - Visualización clara del progreso
+   - Muestra de letras adivinadas
+   - Indicador de intentos restantes
+   - Mensajes informativos para el jugador
+
+### Estructuras Lógicas Implementadas
+
+1. **Estructuras Condicionales**
+   - Verificación de letras correctas
+   - Validación de entrada del usuario
+   - Comprobación de estado del juego
+
+2. **Estructuras Repetitivas**
+   - Bucle principal del juego
+   - Iteración sobre letras de la palabra
+   - Control de intentos restantes
+
+3. **Manejo de Datos**
+   - Almacenamiento de letras adivinadas
+   - Control de palabra secreta
+   - Gestión de intentos
+
+### Guía de Uso
+
+1. **Inicio del Juego**
+   - Ejecutar el archivo juego_ahorcado.py
+   - Se selecciona una palabra aleatoria
+   - Se muestra el tablero inicial
+
+2. **Durante el Juego**
+   - Ingresar una letra por turno
+   - Ver el progreso de la palabra
+   - Monitorear intentos restantes
+
+3. **Finalización**
+   - Victoria: Al adivinar toda la palabra
+   - Derrota: Al agotar los 6 intentos
+   - Opción de volver a jugar
